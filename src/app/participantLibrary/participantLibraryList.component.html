@@ -1,0 +1,65 @@
+﻿
+<div class="container">
+
+<h2>Participant Library</h2>
+
+    <div class="panel-group" id="accordion">
+
+        <div *ngFor="let plit of participantLibraryItemTypes" class="panel panel-primary">
+
+            <div class="panel-heading">
+                <!-- panel-heading -->
+                <h4 class="panel-title">
+                    <!-- title 1 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#accordion_{{plit.NexusKey}}">
+                        {{plit.DisplayName}}
+                    </a>
+                </h4>
+            </div>
+
+            <participantLibraryItemsByType [typeKey]="plit.NexusKey"></participantLibraryItemsByType>
+
+        </div>
+    </div>
+
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Particpant</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form id="new_customer" action="../model/php/action.php" method="post">
+                        <div class="form-group">
+                            <label for="usr">username:</label>
+                            <input type="text" name="user" class="form-control" id="usr">
+                        </div>
+                        <div class="form-group">
+                            <label for="em">email :</label>
+                            <input type="text" name="email" class="form-control" id="em">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">password :</label>
+                            <input type="password" name="pwd" class="form-control" id="pwd">
+                        </div>
+                        <button type="submit" id="signup" name="signup" class="btn btn-success btn-lg">signup<span class="glyphicon glyphicon-user"></span></button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

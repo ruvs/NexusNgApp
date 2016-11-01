@@ -39,6 +39,14 @@
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\index.ts" />
+    <TypeScriptCompile Include="src\app\participantLibrary\participantLibrary.module.ts" />
+    <TypeScriptCompile Include="src\app\participantLibrary\participantLibrary.service.ts" />
+    <TypeScriptCompile Include="src\app\participantLibrary\participantLibraryItem.ts" />
+    <TypeScriptCompile Include="src\app\participantLibrary\participantLibraryItemsByType.component.ts" />
+    <TypeScriptCompile Include="src\app\participantLibrary\participantLibraryItemType.ts" />
+    <TypeScriptCompile Include="src\app\participantLibrary\participantLibraryList.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\appConstants.ts" />
+    <TypeScriptCompile Include="src\app\shared\shared.module.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />
@@ -60,6 +68,8 @@
     <Content Include="protractor.conf.js" />
     <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\participantLibrary\participantLibraryItemsByType.component.html" />
+    <Content Include="src\app\participantLibrary\participantLibraryList.component.html" />
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
     <Content Include="src\styles.css" />
