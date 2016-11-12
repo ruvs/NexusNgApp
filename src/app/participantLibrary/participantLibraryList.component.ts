@@ -1,9 +1,11 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { IParticipantLibraryItem } from './participantLibraryItem';
 import { IParticipantLibraryItemType } from './participantLibraryItemType';
 import { ParticipantLibraryService } from './participantLibrary.service';
+
+declare var jQuery: any;
 
 @Component({
     selector: 'participantLibraryList',
@@ -14,9 +16,13 @@ export class ParticipantLibraryListComponent implements OnInit {
     errorMessage: string;
     participantLibraryItemTypes: IParticipantLibraryItemType[];
 
-    constructor(private router: Router,
-        private _participantLibraryService: ParticipantLibraryService) {
+    newItem: NewParticipantLibraryItem;
 
+    constructor(private router: Router,
+        private _participantLibraryService: ParticipantLibraryService,
+        private _elRef: ElementRef)
+    {
+        this.newItem = new NewParticipantLibraryItem();
     }
 
     //getParticipantsByType(typeKey: string) {
@@ -33,10 +39,36 @@ export class ParticipantLibraryListComponent implements OnInit {
     //        error => this.errorMessage = <any>error);
     //}
 
+    onSubmit(e): void {
+        jQuery(this._elRef.nativeElement).find('#myModal').modal("hide");
+
+        this._participantLibraryService.saveParticipantLibraryItem(this.newItem)
+            .subscribe(data => this.newItemAdded(data),
+            error => this.errorMessage = <any>error),
+            () => console.log("Finished onSubmit");
+    }
+
     ngOnInit(): void {
         this._participantLibraryService.getParticipantLibraryItemTypes()
             .subscribe(
             plit => this.participantLibraryItemTypes = plit,
             error => this.errorMessage = <any>error);
     }
+
+    newItemAdded(theNewItemAdded): void {
+        console.log(theNewItemAdded);
+    }
 }
+
+class NewParticipantLibraryItem implements IParticipantLibraryItem {
+    NexusKey: string;
+    Id: number;
+    Name: string;
+    DisplayCode: string;
+    DisplayName: string;
+    Iso2Code: string;
+    Iso3Code: string;
+    TypeKey: string;
+    TypeName: string;
+}
+

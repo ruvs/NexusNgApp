@@ -23,7 +23,9 @@
     </div>
 
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add New...</button>
+
+    {{hideModal}}
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -33,28 +35,38 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">New Particpant</h4>
+                    <h2 class="modal-title">New Particpant</h2>
                 </div>
                 <div class="modal-body">
-
-                    <form id="new_customer" action="../model/php/action.php" method="post">
+                    <form (ngSubmit)="onSubmit()" #theForm="ngForm">
                         <div class="form-group">
-                            <label for="usr">username:</label>
-                            <input type="text" name="user" class="form-control" id="usr">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="newItem.Name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="em">email :</label>
-                            <input type="text" name="email" class="form-control" id="em">
+                            <label for="name">Display Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="newItem.DisplayName" name="displayName" required>
                         </div>
                         <div class="form-group">
-                            <label for="pwd">password :</label>
-                            <input type="password" name="pwd" class="form-control" id="pwd">
+                            <label for="name">Display Code</label>
+                            <input type="text" class="form-control" [(ngModel)]="newItem.DisplayCode" name="displayCode" required>
                         </div>
-                        <button type="submit" id="signup" name="signup" class="btn btn-success btn-lg">signup<span class="glyphicon glyphicon-user"></span></button>
+                        <div class="form-group">
+                            <label for="name">ISO 3 Code</label>
+                            <input type="text" class="form-control" [(ngModel)]="newItem.Iso3Code" name="iso3Code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="typeKey">Participant Type</label>
+                            <select class="form-control" [(ngModel)]="newItem.TypeKey" name="typeKey" required>
+                                <option *ngFor="let pt of participantLibraryItemTypes" [value]="pt.NexusKey">{{pt.DisplayName}}</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <!--button type="submit" class="btn btn-primary" [disabled]="!theForm.form.valid">Submit</!--button-->
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">close</button>
                 </div>
             </div>
         </div>
