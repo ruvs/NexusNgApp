@@ -1,9 +1,14 @@
 ﻿<!-- panel body -->
 <div id="accordion_{{participantLibraryTypeKey}}" class="panel-collapse collapse in">
     <div class="panel-body">
-        <table>
+        <table *ngIf="participantLibraryItems && participantLibraryItems.length" class="table-bordered table-striped table-hover col-sm-12">
+            <tr>
+                <th class="col-md-1"></th>
+                <th class="col-md-2">Display Code</th>
+                <th class="col-md-9">Display Name</th>
+            </tr>
             <tr *ngFor="let pli of participantLibraryItems">
-                <td><img src="/assets/images/flags/country/16/{{ pli.Iso2Code }}.png" /></td>
+                <td><img *ngIf="showFlags" src="/assets/images/flags/country/16/{{ pli.Iso2Code }}.png" /></td>
                 <td>
                     <a [routerLink]="['/participantLibrary', pli.NexusKey]">
                         {{pli.DisplayCode}}

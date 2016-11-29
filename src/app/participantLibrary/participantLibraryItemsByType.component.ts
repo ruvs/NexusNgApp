@@ -11,6 +11,7 @@ import { ParticipantLibraryService } from './participantLibrary.service';
 })
 export class ParticipantLibraryItemsByTypeComponent implements OnInit {
     @Input('typeKey') participantLibraryTypeKey: string;
+    @Input('showFlags') showFlags: boolean;
 
     pageTitle: string = 'Participant Library List';
     errorMessage: string;

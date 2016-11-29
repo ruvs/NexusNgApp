@@ -3,6 +3,11 @@
 
 <h2>Participant Library</h2>
 
+    <!-- Trigger the modal with a button -->
+    <div class="panel">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add New...</button>
+    </div>
+
     <div class="panel-group" id="accordion">
 
         <div *ngFor="let plit of participantLibraryItemTypes" class="panel panel-primary">
@@ -17,13 +22,10 @@
                 </h4>
             </div>
 
-            <participantLibraryItemsByType [typeKey]="plit.NexusKey"></participantLibraryItemsByType>
+            <participantLibraryItemsByType [typeKey]="plit.NexusKey" [showFlags]="plit.Name=='COUNTRY'"></participantLibraryItemsByType>
 
         </div>
     </div>
-
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add New...</button>
 
     {{hideModal}}
 

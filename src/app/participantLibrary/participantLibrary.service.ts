@@ -24,7 +24,7 @@ export class ParticipantLibraryService {
         this._participantLibraryItemTypes = _appConstants.BASE_URL +        'api/participantLibrary/participants/types';
         this._participantLibraryItems = _appConstants.BASE_URL +            'api/participantLibrary/participants';
         this._participantLibraryItemsByType = _appConstants.BASE_URL +      'api/participantLibrary/participants/byType/';
-        this._participantLibraryItemAdd = _appConstants.BASE_URL + 'api/participantLibrary/participants';
+        this._participantLibraryItemAdd = _appConstants.BASE_URL + 'api/participantLibrary/participants/save';
 
         let headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
         this.options = new RequestOptions({ headers: headers }); // Create a request option

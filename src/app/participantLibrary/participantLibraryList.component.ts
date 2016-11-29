@@ -57,6 +57,7 @@ export class ParticipantLibraryListComponent implements OnInit {
 
     newItemAdded(theNewItemAdded): void {
         console.log(theNewItemAdded);
+        //this.router.navigateByUrl('/participantLibrary');
     }
 }
 
