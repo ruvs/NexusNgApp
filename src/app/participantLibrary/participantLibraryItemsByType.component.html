@@ -1,7 +1,7 @@
 ﻿<!-- panel body -->
 <div id="accordion_{{participantLibraryTypeKey}}" class="panel-collapse collapse in">
     <div class="panel-body">
-        <table *ngIf="participantLibraryItems && participantLibraryItems.length" class="table-bordered table-striped table-hover col-sm-12">
+        <table *ngIf="participantLibraryItems && participantLibraryItems.length" class="table-bordered table-striped table-hover col-md-12">
             <tr>
                 <th class="col-md-1"></th>
                 <th class="col-md-2">Display Code</th>
@@ -15,9 +15,9 @@
                     </a>
                 </td>
                 <td>
-                    <a [routerLink]="['/participantLibrary', pli.NexusKey]">
+                    <button class="btn btn-link" [routerLink]="['/participantLibrary', pli.NexusKey]">
                         {{pli.DisplayName}}
-                    </a>
+                    </button>
                 </td>
             </tr>
         </table>
