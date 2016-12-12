@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppConstants } from './shared/appConstants';
 import { AppComponent } from './app.component';
+
+import { MyErrorHandler } from './shared/myErrorHandler.service';
 
 /* Feature Modules */
 import { ParticipantLibraryModule } from './participantLibrary/participantLibrary.module';
@@ -21,12 +23,13 @@ import { ParticipantLibraryModule } from './participantLibrary/participantLibrar
         ParticipantLibraryModule
     ],
     declarations: [
-        AppComponent
-        //WelcomeComponent
+        AppComponent,
     ],
     providers: [
-        AppConstants
+        AppConstants,
+        MyErrorHandler,
+        [{ provide: ErrorHandler, useClass: MyErrorHandler }],
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent ]
 })
 export class AppModule { }

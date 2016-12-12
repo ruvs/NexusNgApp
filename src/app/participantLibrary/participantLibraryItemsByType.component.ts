@@ -14,7 +14,6 @@ export class ParticipantLibraryItemsByTypeComponent implements OnInit {
     @Input('showFlags') showFlags: boolean;
 
     pageTitle: string = 'Participant Library List';
-    errorMessage: string;
     participantLibraryItems: IParticipantLibraryItem[];
 
     constructor(private router: Router,
@@ -25,8 +24,7 @@ export class ParticipantLibraryItemsByTypeComponent implements OnInit {
     getParticipantsByType() {
         this._participantLibraryService.getParticipantLibraryItemsByType(this.participantLibraryTypeKey)
             .subscribe(
-            pli => this.participantLibraryItems = pli,
-            error => this.errorMessage = <any>error);
+            pli => this.participantLibraryItems = pli);
     }
 
     ngOnInit(): void {
