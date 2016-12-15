@@ -1,25 +1,17 @@
 ﻿<!-- panel body -->
 <div id="accordion_{{participantLibraryTypeKey}}" class="panel-collapse collapse in">
     <div class="panel-body">
-        <table *ngIf="participantLibraryItems && participantLibraryItems.length" class="table-bordered table-striped table-hover col-md-12">
-            <tr>
-                <th class="col-md-1"></th>
-                <th class="col-md-2">Display Code</th>
-                <th class="col-md-9">Display Name</th>
-            </tr>
-            <tr *ngFor="let pli of participantLibraryItems">
-                <td><img *ngIf="showFlags" src="/assets/images/flags/country/16/{{ pli.Iso2Code }}.png" /></td>
-                <td>
-                    <a [routerLink]="['/participantLibrary', pli.NexusKey]">
-                        {{pli.DisplayCode}}
-                    </a>
-                </td>
-                <td>
-                    <button class="btn btn-link" [routerLink]="['/participantLibrary', pli.NexusKey]">
-                        {{pli.DisplayName}}
+        
+        <div class="list-group" *ngIf="participantLibraryItems && participantLibraryItems.length">
+            <div *ngFor="let pli of participantLibraryItems" href="#" class="list-group-item clearfix">
+                <span><img *ngIf="showFlags" src="/assets/images/flags/country/16/{{ pli.Iso2Code }}.png" /></span>
+                <a [routerLink]="['/participantLibrary', pli.NexusKey]">{{pli.DisplayName}}</a>
+                <span class="pull-right">
+                    <a class="btn btn-xs btn-info">{{pli.DisplayCode}}</a>
+                    <button class="btn btn-xs btn-warning">
+                        <span class="glyphicon glyphicon-trash"></span>
                     </button>
-                </td>
-            </tr>
-        </table>
-    </div>
+                </span>
+            </div>
+        </div>
 </div>

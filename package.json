@@ -24,11 +24,11 @@
     "@angular2-material/button": "^2.0.0-alpha.8-2",
     "bootstrap-sass": "^3.3.7",
     "core-js": "^2.4.1",
+    "jquery": "^3.1.1",
     "ng2-bootstrap": "^1.1.16",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.6.23",
-    "jquery": "^3.1.1"
+    "zone.js": "^0.6.23"
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.30",

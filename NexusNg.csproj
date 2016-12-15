@@ -65,7 +65,15 @@
     <None Include="src\assets\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
     <None Include="src\assets\fonts\bootstrap\glyphicons-halflings-regular.woff" />
     <None Include="src\assets\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <None Include="src\assets\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="src\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="src\assets\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="src\assets\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="src\assets\images\.keep" />
+    <None Include="src\assets\stylesheets\bootstrap-theme.css.map" />
+    <None Include="src\assets\stylesheets\bootstrap-theme.min.css.map" />
+    <None Include="src\assets\stylesheets\bootstrap.css.map" />
+    <None Include="src\assets\stylesheets\bootstrap.min.css.map" />
     <None Include="src\assets\stylesheets\bootstrap\mixins\_alerts.scss" />
     <None Include="src\assets\stylesheets\bootstrap\mixins\_background-variant.scss" />
     <None Include="src\assets\stylesheets\bootstrap\mixins\_border-radius.scss" />
@@ -151,6 +159,7 @@
     <Content Include="src\app\participantLibrary\participantLibraryItemsByType.component.html" />
     <Content Include="src\app\participantLibrary\participantLibraryList.component.html" />
     <Content Include="src\assets\fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="src\assets\javascripts\bootstrap-sprockets.js" />
     <Content Include="src\assets\javascripts\bootstrap.js" />
     <Content Include="src\assets\javascripts\bootstrap.min.js" />
@@ -166,6 +175,10 @@
     <Content Include="src\assets\javascripts\bootstrap\tab.js" />
     <Content Include="src\assets\javascripts\bootstrap\tooltip.js" />
     <Content Include="src\assets\javascripts\bootstrap\transition.js" />
+    <Content Include="src\assets\stylesheets\bootstrap-theme.css" />
+    <Content Include="src\assets\stylesheets\bootstrap-theme.min.css" />
+    <Content Include="src\assets\stylesheets\bootstrap.css" />
+    <Content Include="src\assets\stylesheets\bootstrap.min.css" />
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
     <None Include="src\styles.scss" />
