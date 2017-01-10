@@ -1,15 +1,16 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
+//import './shared/rxjs-operators';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
+//import 'rxjs/add/operator/do';
+//import 'rxjs/add/observable/throw';
 
 import { IParticipantLibraryItem } from './participantLibraryItem';
 import { IParticipantLibraryItemType } from './participantLibraryItemType';
-import { AppConstants } from '../shared/appConstants';
+import { ConfigService } from '../shared/utils/config.service';
 
 @Injectable()
 export class ParticipantLibraryService {
@@ -20,12 +21,14 @@ export class ParticipantLibraryService {
 
     private options: RequestOptions;
     
-    constructor(private _http: Http,
-        private _appConstants: AppConstants) {
-        this._participantLibraryItemTypes = _appConstants.BASE_URL +        'api/participantLibrary/participants/types';
-        this._participantLibraryItems = _appConstants.BASE_URL +            'api/participantLibrary/participants';
-        this._participantLibraryItemsByType = _appConstants.BASE_URL +      'api/participantLibrary/participants/byType/';
-        this._participantLibraryItemAdd = _appConstants.BASE_URL + 'api/participantLibrary/participants/save';
+    constructor(
+        private _http: Http,
+        private _configService: ConfigService)
+    {
+        this._participantLibraryItemTypes = _configService.getApiUri()      + 'participantLibrary/participants/types';
+        this._participantLibraryItems = _configService.getApiUri()          + 'participantLibrary/participants';
+        this._participantLibraryItemsByType = _configService.getApiUri()    + 'participantLibrary/participants/byType/';
+        this._participantLibraryItemAdd = _configService.getApiUri()        + 'participantLibrary/participants/save';
 
         let headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
         this.options = new RequestOptions({ headers: headers }); // Create a request option
@@ -66,10 +69,28 @@ export class ParticipantLibraryService {
         return body.data || {};
     }
 
-    private handleError(error: Response) {
-        // in a real world app, we may send the server to some remote logging infrastructure
-        // instead of just logging it to the console
-        //console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
+    private handleError(error: any) {
+        var applicationError = error.headers.get('Application-Error');
+        var serverError = error.json();
+        var modelStateErrors: string = '';
+
+        if (!serverError.type) {
+            console.log(serverError);
+            for (var key in serverError) {
+                if (serverError[key])
+                    modelStateErrors += serverError[key] + '\n';
+            }
+        }
+
+        modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
+
+        return Observable.throw(applicationError || modelStateErrors || 'Server error');
     }
+
+    //private handleError(error: Response) {
+    //    // in a real world app, we may send the server to some remote logging infrastructure
+    //    // instead of just logging it to the console
+    //    //console.error(error);
+    //    return Observable.throw(error.json().error || 'Server error');
+    //}
 } 

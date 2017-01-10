@@ -35,6 +35,13 @@
   <ItemGroup>
     <TypeScriptCompile Include="e2e\app.e2e-spec.ts" />
     <TypeScriptCompile Include="e2e\app.po.ts" />
+    <TypeScriptCompile Include="src\app\home\home.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\directives\mobile-hide.directive.ts" />
+    <TypeScriptCompile Include="src\app\shared\directives\highlight.directive.ts" />
+    <TypeScriptCompile Include="src\app\shared\pipes\date-format.pipe.ts" />
+    <TypeScriptCompile Include="src\app\shared\rxjs-operators.ts" />
+    <TypeScriptCompile Include="src\app\shared\interfaces.ts" />
     <TypeScriptCompile Include="src\app\shared\myErrorHandler.service.ts" />
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
@@ -48,6 +55,10 @@
     <TypeScriptCompile Include="src\app\participantLibrary\participantLibraryList.component.ts" />
     <TypeScriptCompile Include="src\app\shared\appConstants.ts" />
     <TypeScriptCompile Include="src\app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="src\app\shared\utils\config.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\utils\mapping.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\utils\notification.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\utils\items.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />
@@ -60,6 +71,7 @@
     <None Include="e2e\tsconfig.json" />
     <None Include="package.json" />
     <None Include="README.md" />
+    <None Include="src\app\home\home.component.scss" />
     <None Include="src\assets\.gitkeep" />
     <None Include="src\assets\fonts\bootstrap\glyphicons-halflings-regular.eot" />
     <None Include="src\assets\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
@@ -156,6 +168,7 @@
     <Content Include="protractor.conf.js" />
     <None Include="src\app\app.component.scss" />
     <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\home\home.component.html" />
     <Content Include="src\app\participantLibrary\participantLibraryItemsByType.component.html" />
     <Content Include="src\app\participantLibrary\participantLibraryList.component.html" />
     <Content Include="src\assets\fonts\bootstrap\glyphicons-halflings-regular.svg" />
