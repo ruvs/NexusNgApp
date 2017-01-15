@@ -1,11 +1,10 @@
-﻿
-<div class="container">
+﻿<div [@flyInOut]="'in'" class="container">
 
-<h2>Participant Library</h2>
+    <h2>Participant Library</h2>
 
     <!-- Trigger the modal with a button -->
     <div class="panel">
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Add New...</button>
+        <button type="button" class="btn btn-primary btn-sm">Add New...</button>
     </div>
 
     <div class="panel-group" id="accordion">
@@ -22,56 +21,85 @@
                 </h4>
             </div>
 
-            <participantLibraryItemsByType [typeKey]="plit.NexusKey" [showFlags]="plit.Name=='COUNTRY'"></participantLibraryItemsByType>
+            <participantLibraryItemsByType [typeKey]="plit.NexusKey" [showFlags]="plit.Name=='COUNTRY'" (onEditPliClicked)="onEditPliClicked($event)"></participantLibraryItemsByType>
 
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+</div>
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title">New Particpant</h2>
-                </div>
-                <div class="modal-body">
-                    <form (ngSubmit)="onSubmit()" #theForm="ngForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" [(ngModel)]="newItem.Name" name="name" required>
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" *ngIf="selectedParticipantLibraryItemLoaded">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="hideChildModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4>{{participantLibraryItemDetails.DisplayName}} details</h4>
+            </div>
+            <div class="modal-body">
+                <form ngNoForm method="post">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-user" aria-hidden="true"></i>Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Name" disabled />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-text-width" aria-hidden="true"></i>Title</label>
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.DisplayCode" disabled />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-paragraph" aria-hidden="true"></i>Description</label>
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.DisplayName" disabled />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="name">Display Name</label>
-                            <input type="text" class="form-control" [(ngModel)]="newItem.DisplayName" name="displayName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-map-marker" aria-hidden="true"></i>Iso2Code</label>
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Iso2Code" disabled />
+                            </div>
+
+                            <div class="col-md-4 selectContainer">
+                                <label class="control-label"><i class="fa fa-spinner" aria-hidden="true"></i>Iso3Code</label>
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Iso3Code" disabled />
+                            </div>
+                            <div class="col-md-4 selectContainer">
+                                <label class="control-label"><i class="fa fa-tag" aria-hidden="true"></i>Type</label>
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.TypeKey" disabled />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="name">Display Code</label>
-                            <input type="text" class="form-control" [(ngModel)]="newItem.DisplayCode" name="displayCode" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">ISO 3 Code</label>
-                            <input type="text" class="form-control" [(ngModel)]="newItem.Iso3Code" name="iso3Code" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="typeKey">Participant Type</label>
-                            <select class="form-control" [(ngModel)]="newItem.TypeKey" name="typeKey" required>
-                                <option *ngFor="let pt of participantLibraryItemTypes" [value]="pt.NexusKey">{{pt.DisplayName}}</option>
-                            </select>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <!--button type="submit" class="btn btn-primary" [disabled]="!theForm.form.valid">Submit</!--button-->
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <hr />
+                    <div class="panel panel-info">
+
+                        <div class="panel-heading">Attendes</div>
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th><i class="fa fa-user" aria-hidden="true"></i>Name</th>
+                                    <th><i class="fa fa-linkedin-square" aria-hidden="true"></i>Profession</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-
 </div>
+
+
+
+
+
+
 

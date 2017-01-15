@@ -17,6 +17,7 @@ export class ParticipantLibraryService {
     private _participantLibraryItems;
     private _participantLibraryItemTypes;
     private _participantLibraryItemsByType;
+    private _participantLibraryItem;
     private _participantLibraryItemAdd;
 
     private options: RequestOptions;
@@ -28,6 +29,7 @@ export class ParticipantLibraryService {
         this._participantLibraryItemTypes = _configService.getApiUri()      + 'participantLibrary/participants/types';
         this._participantLibraryItems = _configService.getApiUri()          + 'participantLibrary/participants';
         this._participantLibraryItemsByType = _configService.getApiUri()    + 'participantLibrary/participants/byType/';
+        this._participantLibraryItem = _configService.getApiUri()           + 'participantLibrary/participants/';
         this._participantLibraryItemAdd = _configService.getApiUri()        + 'participantLibrary/participants/save';
 
         let headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
@@ -37,6 +39,13 @@ export class ParticipantLibraryService {
     getParticipantLibraryItems(): Observable<IParticipantLibraryItem[]> {
         return this._http.get(this._participantLibraryItems)
             .map((response: Response) => <IParticipantLibraryItem[]>response.json())
+            //.do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getParticipantLibraryItem(key: string): Observable<IParticipantLibraryItem> {
+        return this._http.get(this._participantLibraryItem + key)
+            .map((response: Response) => <IParticipantLibraryItem>response.json())
             //.do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }

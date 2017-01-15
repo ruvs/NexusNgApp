@@ -6,21 +6,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-//ng2 bootstrap
-import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { ProgressbarModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
+/* ng2-bootstrap */
+import { PaginationModule } from 'ng2-bootstrap';
+import { DatepickerModule } from 'ng2-bootstrap';
+import { Ng2BootstrapModule } from 'ng2-bootstrap';
+import { ModalModule } from 'ng2-bootstrap';
+import { ProgressbarModule } from 'ng2-bootstrap';
+import { TimepickerModule } from 'ng2-bootstrap';
 
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+
+/*  */
 import { AppConstants } from './shared/appConstants';
 import { AppComponent } from './app.component';
 import { DateFormatPipe } from './shared/pipes/date-format.pipe';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { MobileHideDirective } from './shared/directives/mobile-hide.directive';
-
-import { MyErrorHandler } from './shared/myErrorHandler.service';
 
 /* Feature Modules */
 import { SharedModule } from './shared/shared.module';
@@ -32,6 +33,8 @@ import { NotificationService } from './shared/utils/notification.service';
 /* My Modules */
 import { HomeComponent } from './home/home.component';
 import { ParticipantLibraryModule } from './participantLibrary/participantLibrary.module';
+
+//import { MyErrorHandler } from './shared/myErrorHandler.service';
 
 @NgModule({
     imports: [
@@ -58,6 +61,7 @@ import { ParticipantLibraryModule } from './participantLibrary/participantLibrar
         HighlightDirective,
         MobileHideDirective,
         HomeComponent,
+        //SlimLoadingBarComponent
     ],
     providers: [
         AppConstants,
@@ -65,9 +69,10 @@ import { ParticipantLibraryModule } from './participantLibrary/participantLibrar
         ItemsService,
         MappingService,
         NotificationService,
+        SlimLoadingBarService
         //MyErrorHandler,
         //[{ provide: ErrorHandler, useClass: MyErrorHandler }],
     ],
-    bootstrap: [AppComponent ]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

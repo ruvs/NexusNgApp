@@ -8,10 +8,12 @@
                 <a [routerLink]="['/participantLibrary', pli.NexusKey]">{{pli.DisplayName}}</a>
                 <span class="pull-right">
                     <a class="btn btn-xs btn-info">{{pli.DisplayCode}}</a>
-                    <button class="btn btn-xs btn-warning">
-                        <span class="glyphicon glyphicon-trash"></span>
+                    <button class="btn btn-xs btn-warning" (click)="viewParticipantLibraryItemDetails(pli.NexusKey)">
+                        <span class="glyphicon glyphicon-edit"></span>
                     </button>
                 </span>
             </div>
         </div>
 </div>
+
+
