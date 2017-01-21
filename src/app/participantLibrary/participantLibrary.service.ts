@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 //import 'rxjs/add/operator/do';
 //import 'rxjs/add/observable/throw';
 
-import { IParticipantLibraryItem } from './participantLibraryItem';
+import { IParticipantLibraryItem, IParticipantLibraryItemDetails } from './participantLibraryItem';
 import { IParticipantLibraryItemType } from './participantLibraryItemType';
 import { ConfigService } from '../shared/utils/config.service';
 
@@ -29,7 +29,7 @@ export class ParticipantLibraryService {
         this._participantLibraryItemTypes = _configService.getApiUri()      + 'participantLibrary/participants/types';
         this._participantLibraryItems = _configService.getApiUri()          + 'participantLibrary/participants';
         this._participantLibraryItemsByType = _configService.getApiUri()    + 'participantLibrary/participants/byType/';
-        this._participantLibraryItem = _configService.getApiUri()           + 'participantLibrary/participants/';
+        this._participantLibraryItem = _configService.getApiUri() + 'participantLibrary/participants/';
         this._participantLibraryItemAdd = _configService.getApiUri()        + 'participantLibrary/participants/save';
 
         let headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
@@ -45,6 +45,13 @@ export class ParticipantLibraryService {
 
     getParticipantLibraryItem(key: string): Observable<IParticipantLibraryItem> {
         return this._http.get(this._participantLibraryItem + key)
+            .map((response: Response) => <IParticipantLibraryItem>response.json())
+            //.do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getParticipantLibraryItemDetails(key: string): Observable<IParticipantLibraryItemDetails> {
+        return this._http.get(this._participantLibraryItem + key + '/details')
             .map((response: Response) => <IParticipantLibraryItem>response.json())
             //.do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);

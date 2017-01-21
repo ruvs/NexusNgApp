@@ -1,12 +1,30 @@
 ﻿import { Injectable } from '@angular/core';
 
 //import { ISchedule, IScheduleDetails, IUser } from '../interfaces';
-//import { ItemsService } from './items.service'
+import { ItemsService } from './items.service'
+
+import { IParticipantLibraryItem, IParticipantLibraryItemDetails } from '../../participantLibrary/participantLibraryItem';
 
 @Injectable()
 export class MappingService {
 
-    //constructor(private itemsService: ItemsService) { }
+    constructor(private itemsService: ItemsService) { }
+
+    mapParticipantLibraryItemDetailsToParticipantLibraryItem(scheduleDetails: IParticipantLibraryItemDetails): IParticipantLibraryItem {
+        var pli: IParticipantLibraryItem = {
+            NexusKey: scheduleDetails.NexusKey,
+            Name: scheduleDetails.Name,
+            DisplayName: scheduleDetails.DisplayName,
+            DisplayCode: scheduleDetails.DisplayCode,
+            Iso2Code: scheduleDetails.Iso2Code,
+            Iso3Code: scheduleDetails.Iso3Code,
+            Id: scheduleDetails.Id,
+            TypeKey: scheduleDetails.TypeKey,
+            TypeName: null
+        }
+
+        return pli;
+    }
 
     //mapScheduleDetailsToSchedule(scheduleDetails: IScheduleDetails): ISchedule {
     //    var schedule: ISchedule = {

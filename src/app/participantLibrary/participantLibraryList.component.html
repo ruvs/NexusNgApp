@@ -38,22 +38,25 @@
                 <h4>{{participantLibraryItemDetails.DisplayName}} details</h4>
             </div>
             <div class="modal-body">
-                <form ngNoForm method="post">
+                <form #editPliForm="ngForm">
                     <div class="form-group">
+                        <div>
+                            <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.NexusKey" name="NexusKey" disabled />
+                        </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="control-label"><i class="fa fa-user" aria-hidden="true"></i>Name</label>
-                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Name" disabled />
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Name" name="Name" disabled />
                             </div>
 
                             <div class="col-md-4">
                                 <label class="control-label"><i class="fa fa-text-width" aria-hidden="true"></i>Title</label>
-                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.DisplayCode" disabled />
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.DisplayCode" name="DisplayCode" />
                             </div>
 
                             <div class="col-md-4">
                                 <label class="control-label"><i class="fa fa-paragraph" aria-hidden="true"></i>Description</label>
-                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.DisplayName" disabled />
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.DisplayName" name="DisplayName" />
                             </div>
                         </div>
                     </div>
@@ -62,35 +65,31 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="control-label"><i class="fa fa-map-marker" aria-hidden="true"></i>Iso2Code</label>
-                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Iso2Code" disabled />
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Iso2Code" name="Iso2Code" />
                             </div>
 
                             <div class="col-md-4 selectContainer">
                                 <label class="control-label"><i class="fa fa-spinner" aria-hidden="true"></i>Iso3Code</label>
-                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Iso3Code" disabled />
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Iso3Code" name="Iso3Code" />
                             </div>
                             <div class="col-md-4 selectContainer">
-                                <label class="control-label"><i class="fa fa-tag" aria-hidden="true"></i>Type</label>
-                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.TypeKey" disabled />
+                                <label class="control-label"><i class="fa fa-spinner" aria-hidden="true"></i>Type</label>
+                                <select class="form-control" [(ngModel)]="participantLibraryItemDetails.TypeKey" name="pliType">
+                                    <option *ngFor="let pliType of participantLibraryItemDetails.Types" [value]="pliType.NexusKey">{{pliType.DisplayName}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <hr />
-                    <div class="panel panel-info">
 
-                        <div class="panel-heading">Attendes</div>
-
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th><i class="fa fa-user" aria-hidden="true"></i>Name</th>
-                                    <th><i class="fa fa-linkedin-square" aria-hidden="true"></i>Profession</th>
-                                </tr>
-                            </thead>
-
-                        </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="hideChildModal()">
+                            <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Cancel
+                        </button>
+                        <button type="button" [disabled]="!editPliForm.form.valid" class="btn btn-primary" (click)="updateParticipantLibraryItem(participantLibraryItemDetails)">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Update
+                        </button>
                     </div>
+
                 </form>
             </div>
         </div>
