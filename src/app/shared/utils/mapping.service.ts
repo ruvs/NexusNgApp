@@ -10,16 +10,16 @@ export class MappingService {
 
     constructor(private itemsService: ItemsService) { }
 
-    mapParticipantLibraryItemDetailsToParticipantLibraryItem(scheduleDetails: IParticipantLibraryItemDetails): IParticipantLibraryItem {
+    mapParticipantLibraryItemDetailsToParticipantLibraryItem(pliDetails: IParticipantLibraryItemDetails): IParticipantLibraryItem {
         var pli: IParticipantLibraryItem = {
-            NexusKey: scheduleDetails.NexusKey,
-            Name: scheduleDetails.Name,
-            DisplayName: scheduleDetails.DisplayName,
-            DisplayCode: scheduleDetails.DisplayCode,
-            Iso2Code: scheduleDetails.Iso2Code,
-            Iso3Code: scheduleDetails.Iso3Code,
-            Id: scheduleDetails.Id,
-            TypeKey: scheduleDetails.TypeKey,
+            NexusKey: pliDetails.NexusKey,
+            Name: pliDetails.Name,
+            DisplayName: pliDetails.DisplayName,
+            DisplayCode: pliDetails.DisplayCode,
+            Iso2Code: pliDetails.Iso2Code,
+            Iso3Code: pliDetails.Iso3Code,
+            Id: pliDetails.Id,
+            TypeKey: pliDetails.TypeKey,
             TypeName: null
         }
 

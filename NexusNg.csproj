@@ -171,6 +171,11 @@
     <Content Include="src\app\home\home.component.html" />
     <Content Include="src\app\participantLibrary\participantLibraryItemsByType.component.html" />
     <Content Include="src\app\participantLibrary\participantLibraryList.component.html" />
+    <Content Include="src\assets\alertify\alertify.bootstrap.css" />
+    <Content Include="src\assets\alertify\alertify.core.css" />
+    <Content Include="src\assets\alertify\alertify.default.css" />
+    <Content Include="src\assets\alertify\alertify.js" />
+    <Content Include="src\assets\alertify\alertify.min.js" />
     <Content Include="src\assets\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="src\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="src\assets\javascripts\bootstrap-sprockets.js" />
@@ -196,6 +201,7 @@
     <Content Include="src\index.html" />
     <None Include="src\styles.scss" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

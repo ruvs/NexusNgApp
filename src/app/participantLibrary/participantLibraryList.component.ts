@@ -39,9 +39,11 @@ import { ParticipantLibraryService } from './participantLibrary.service';
 export class ParticipantLibraryListComponent implements OnInit {
 
     // Modal properties
-    @ViewChild('childModal') public childModal: ModalDirective;
+    @ViewChild('pliAddModal') public addModal: ModalDirective;
+    @ViewChild('pliEditModal') public editModal: ModalDirective;
     selectedParticipantLibraryItem: string;
     participantLibraryItemDetails: IParticipantLibraryItemDetails;
+    editingParticipantLibraryItem: IParticipantLibraryItem;
     selectedParticipantLibraryItemLoaded: boolean = false;
     //index: number = 0;
     backdropOptions = [true, false, 'static'];
@@ -63,11 +65,15 @@ export class ParticipantLibraryListComponent implements OnInit {
         private mappingService: MappingService,
         private loadingBarService: SlimLoadingBarService
     ) {
-        ////this.newItem = new NewParticipantLibraryItem();
     }
 
     ngOnInit(): void {
         this.loadParticipantLibraryItemTypes();
+        this.editingParticipantLibraryItem = this.newPliInstance();
+    }
+
+    newPliInstance(): IParticipantLibraryItem {
+        return { NexusKey: '', Id: -1, Name: '', DisplayCode: '', DisplayName: '', Iso2Code: '', Iso3Code: '', TypeKey: '', TypeName: '' }
     }
 
     loadParticipantLibraryItemTypes() {
@@ -96,7 +102,7 @@ export class ParticipantLibraryListComponent implements OnInit {
                 this.participantLibraryItemDetails = this.itemsService.getSerialized<IParticipantLibraryItemDetails>(plid);
                 this.loadingBarService.complete();
                 this.selectedParticipantLibraryItemLoaded = true;
-                this.childModal.show();//.open('lg');
+                this.showEditModal();
             },
             error => {
                 this.loadingBarService.complete();
@@ -104,16 +110,18 @@ export class ParticipantLibraryListComponent implements OnInit {
             });
     }
 
-    updateParticipantLibraryItem(editForm: NgForm) {
-        console.log(editForm.value);
-
-        var pliMapped = this.mappingService.mapParticipantLibraryItemDetailsToParticipantLibraryItem(this.participantLibraryItemDetails);
+    updateParticipantLibraryItem(pliToAdd: IParticipantLibraryItem)
+    {
+        //(editForm: NgForm) {
+        //this.mappingService.mapParticipantLibraryItemDetailsToParticipantLibraryItem(this.editingParticipantLibraryItem);
+        var pliMapped = this.itemsService.getSerialized<IParticipantLibraryItem>(this.participantLibraryItemDetails);
 
         this.loadingBarService.start();
         this._participantLibraryService.saveParticipantLibraryItem(pliMapped)
             .subscribe(() => {
                 this.notificationService.printSuccessMessage('Item has been updated');
                 this.loadingBarService.complete();
+                this.hideEditModal();
             },
             error => {
                 this.loadingBarService.complete();
@@ -121,19 +129,35 @@ export class ParticipantLibraryListComponent implements OnInit {
             });
     }
 
-    ////onSubmit(e): void {
-    ////    this._participantLibraryService.saveParticipantLibraryItem(this.newItem)
-    ////        .subscribe(data => this.newItemAdded(data),
-    ////        error => this.errorMessage = <any>error),
-    ////        () => console.log("Finished onSubmit");
-    ////}
+    addParticipantLibraryItem(pliToAdd: IParticipantLibraryItem) {
+        var pliMapped = this.itemsService.getSerialized<IParticipantLibraryItem>(pliToAdd);
 
-    ////newItemAdded(theNewItemAdded): void {
-    ////    console.log(theNewItemAdded);
-    ////    //this.router.navigateByUrl('/participantLibrary');
-    ////}
+        this.loadingBarService.start();
+        this._participantLibraryService.saveParticipantLibraryItem(pliMapped)
+            .subscribe(() => {
+                this.notificationService.printSuccessMessage('Item has been added');
+                this.loadingBarService.complete();
+                this.hideAddModal();
+            },
+            error => {
+                this.loadingBarService.complete();
+                this.notificationService.printErrorMessage('Failed to add item. ' + error);
+            });
+    }
 
-    public hideChildModal(): void {
-        this.childModal.hide();
+    public showEditModal(): void {
+        this.editModal.show();
+    }
+
+    public hideEditModal(): void {
+        this.editModal.hide();
+    }
+
+    public showAddModal(): void {
+        this.addModal.show();
+    }
+
+    public hideAddModal(): void {
+        this.addModal.hide();
     }
 }

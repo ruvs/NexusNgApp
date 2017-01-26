@@ -72,8 +72,6 @@ export class ParticipantLibraryService {
     }
 
     saveParticipantLibraryItem(data) {
-        console.log(JSON.stringify(data));
-
         return this._http.post(this._participantLibraryItemAdd, JSON.stringify(data), this.options)
             .map((response: Response) => this.extractData)
             //.do(data => console.log('All: ' + data))

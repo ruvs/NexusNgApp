@@ -4,7 +4,7 @@
 
     <!-- Trigger the modal with a button -->
     <div class="panel">
-        <button type="button" class="btn btn-primary btn-sm">Add New...</button>
+        <button type="button" class="btn btn-primary" (click)="showAddModal()">Add New...</button>
     </div>
 
     <div class="panel-group" id="accordion">
@@ -28,21 +28,31 @@
 
 </div>
 
-<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div bsModal #pliEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" *ngIf="selectedParticipantLibraryItemLoaded">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" aria-label="Close" (click)="hideChildModal()">
+                <button type="button" class="close" aria-label="Close" (click)="hideEditModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4>{{participantLibraryItemDetails.DisplayName}} details</h4>
+                <h2 class="text-primary">{{participantLibraryItemDetails.DisplayName}} details</h2>
             </div>
             <div class="modal-body">
                 <form #editPliForm="ngForm">
                     <div class="form-group">
-                        <div>
-                            <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.NexusKey" name="NexusKey" disabled />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label"><i class="fa fa-user" aria-hidden="true"></i>Key</label>
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.NexusKey" name="NexusKey" disabled />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label"><i class="fa fa-user" aria-hidden="true"></i>Id</label>
+                                <input type="text" class="form-control" [(ngModel)]="participantLibraryItemDetails.Id" name="Id" disabled />
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="control-label"><i class="fa fa-user" aria-hidden="true"></i>Name</label>
@@ -82,7 +92,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" (click)="hideChildModal()">
+                        <button type="button" class="btn btn-default" (click)="hideEditModal()">
                             <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Cancel
                         </button>
                         <button type="button" [disabled]="!editPliForm.form.valid" class="btn btn-primary" (click)="updateParticipantLibraryItem(participantLibraryItemDetails)">
@@ -96,6 +106,71 @@
     </div>
 </div>
 
+<div bsModal #pliAddModal="bs-modal" class="modal fade" tabindex="-2" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="hideAddModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="text-primary">{{editingParticipantLibraryItem.DisplayName}} details</h2>
+            </div>
+            <div class="modal-body">
+                <form #addPliForm="ngForm">
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-user" aria-hidden="true"></i>Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="editingParticipantLibraryItem.Name" name="Name" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-text-width" aria-hidden="true"></i>Title</label>
+                                <input type="text" class="form-control" [(ngModel)]="editingParticipantLibraryItem.DisplayCode" name="DisplayCode" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-paragraph" aria-hidden="true"></i>Description</label>
+                                <input type="text" class="form-control" [(ngModel)]="editingParticipantLibraryItem.DisplayName" name="DisplayName" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-map-marker" aria-hidden="true"></i>Iso2Code</label>
+                                <input type="text" class="form-control" [(ngModel)]="editingParticipantLibraryItem.Iso2Code" name="Iso2Code" />
+                            </div>
+
+                            <div class="col-md-4 selectContainer">
+                                <label class="control-label"><i class="fa fa-spinner" aria-hidden="true"></i>Iso3Code</label>
+                                <input type="text" class="form-control" [(ngModel)]="editingParticipantLibraryItem.Iso3Code" name="Iso3Code" />
+                            </div>
+                            <div class="col-md-4 selectContainer">
+                                <label class="control-label"><i class="fa fa-spinner" aria-hidden="true"></i>Type</label>
+                                <select class="form-control" [(ngModel)]="editingParticipantLibraryItem.TypeKey" name="pliType">
+                                    <option *ngFor="let pliType of participantLibraryItemTypes" [value]="pliType.NexusKey">{{pliType.DisplayName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="hideAddModal()">
+                            <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Cancel
+                        </button>
+                        <button type="button" [disabled]="!addPliForm.form.valid" class="btn btn-primary" (click)="addParticipantLibraryItem(editingParticipantLibraryItem)">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Create
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
