@@ -14,7 +14,7 @@ import { ModalModule } from 'ng2-bootstrap';
 import { ProgressbarModule } from 'ng2-bootstrap';
 import { TimepickerModule } from 'ng2-bootstrap';
 
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 /*  */
 import { AppConstants } from './shared/appConstants';
@@ -47,6 +47,7 @@ import { ParticipantLibraryModule } from './participantLibrary/participantLibrar
         ModalModule,
         ProgressbarModule,
         TimepickerModule,
+        SlimLoadingBarModule.forRoot(),
         SharedModule,
         RouterModule.forRoot([
             { path: 'home', component: HomeComponent },
@@ -69,7 +70,6 @@ import { ParticipantLibraryModule } from './participantLibrary/participantLibrar
         ItemsService,
         MappingService,
         NotificationService,
-        SlimLoadingBarService
         //MyErrorHandler,
         //[{ provide: ErrorHandler, useClass: MyErrorHandler }],
     ],

@@ -97,6 +97,7 @@ export class ParticipantLibraryListComponent implements OnInit {
     viewParticipantLibraryItemDetails(pliKey: string) {
         this.selectedParticipantLibraryItem = pliKey;
 
+        this.loadingBarService.start();
         this._participantLibraryService.getParticipantLibraryItemDetails(pliKey)
             .subscribe((plid: IParticipantLibraryItemDetails) => {
                 this.participantLibraryItemDetails = this.itemsService.getSerialized<IParticipantLibraryItemDetails>(plid);

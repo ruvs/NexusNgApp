@@ -9,8 +9,7 @@ import { ModalModule } from 'ng2-bootstrap';
 import { ProgressbarModule } from 'ng2-bootstrap';
 import { TimepickerModule } from 'ng2-bootstrap';
 
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 /*  */
 import { AppConstants } from '../shared/appConstants';
@@ -38,6 +37,7 @@ import { ParticipantLibraryService } from './participantLibrary.service';
         ModalModule,
         ProgressbarModule,
         TimepickerModule,
+        SlimLoadingBarModule.forRoot(),
         SharedModule,
         RouterModule.forChild([
             //{ path: '', redirectTo: 'participantLibrary' },
@@ -62,7 +62,6 @@ import { ParticipantLibraryService } from './participantLibrary.service';
         ItemsService,
         MappingService,
         NotificationService,
-        SlimLoadingBarService,
         ParticipantLibraryService
     ]
 })

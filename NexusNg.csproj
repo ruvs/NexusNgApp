@@ -193,6 +193,7 @@
     <Content Include="src\assets\javascripts\bootstrap\tab.js" />
     <Content Include="src\assets\javascripts\bootstrap\tooltip.js" />
     <Content Include="src\assets\javascripts\bootstrap\transition.js" />
+    <Content Include="src\assets\slimLoadingBar\styles.css" />
     <Content Include="src\assets\stylesheets\bootstrap-theme.css" />
     <Content Include="src\assets\stylesheets\bootstrap-theme.min.css" />
     <Content Include="src\assets\stylesheets\bootstrap.css" />
