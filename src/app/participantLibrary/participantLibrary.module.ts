@@ -20,10 +20,12 @@ import { MobileHideDirective } from '../shared/directives/mobile-hide.directive'
 
 /* Feature Modules */
 import { SharedModule } from '../shared/shared.module';
-import { ConfigService } from '../shared/utils/config.service';
+import { ConfigService } from './config.service';
 import { ItemsService } from '../shared/utils/items.service';
 import { MappingService } from '../shared/utils/mapping.service';
 import { NotificationService } from '../shared/utils/notification.service';
+import { ChannelService, SignalrWindow } from "../shared/utils/channel.service";
+import { ParticipantLibraryChannelConfig } from './channelConfig.service';
 
 import { ParticipantLibraryListComponent } from './participantLibraryList.component';
 import { ParticipantLibraryItemsByTypeComponent } from './participantLibraryItemsByType.component';
@@ -62,7 +64,9 @@ import { ParticipantLibraryService } from './participantLibrary.service';
         ItemsService,
         MappingService,
         NotificationService,
-        ParticipantLibraryService
+        ParticipantLibraryService,
+            { provide: SignalrWindow, useValue: window },
+            { provide: 'channel.config', useClass: ParticipantLibraryChannelConfig }
     ]
 })
 

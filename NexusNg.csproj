@@ -39,6 +39,7 @@
     <TypeScriptCompile Include="src\app\home\home.component.ts" />
     <TypeScriptCompile Include="src\app\shared\directives\mobile-hide.directive.ts" />
     <TypeScriptCompile Include="src\app\shared\directives\highlight.directive.ts" />
+    <TypeScriptCompile Include="src\app\participantLibrary\channelConfig.service.ts" />
     <TypeScriptCompile Include="src\app\shared\pipes\date-format.pipe.ts" />
     <TypeScriptCompile Include="src\app\shared\rxjs-operators.ts" />
     <TypeScriptCompile Include="src\app\shared\interfaces.ts" />
@@ -55,7 +56,8 @@
     <TypeScriptCompile Include="src\app\participantLibrary\participantLibraryList.component.ts" />
     <TypeScriptCompile Include="src\app\shared\appConstants.ts" />
     <TypeScriptCompile Include="src\app\shared\shared.module.ts" />
-    <TypeScriptCompile Include="src\app\shared\utils\config.service.ts" />
+    <TypeScriptCompile Include="src\app\participantLibrary\config.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\utils\channel.service.ts" />
     <TypeScriptCompile Include="src\app\shared\utils\mapping.service.ts" />
     <TypeScriptCompile Include="src\app\shared\utils\notification.service.ts" />
     <TypeScriptCompile Include="src\app\shared\utils\items.service.ts" />

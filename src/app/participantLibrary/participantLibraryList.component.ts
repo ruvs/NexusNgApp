@@ -7,7 +7,7 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 import { ItemsService } from '../shared/utils/items.service';
 import { NotificationService } from '../shared/utils/notification.service';
-import { ConfigService } from '../shared/utils/config.service';
+import { ConfigService } from './config.service';
 import { MappingService } from '../shared/utils/mapping.service';
 
 import { IParticipantLibraryItem, IParticipantLibraryItemDetails } from './participantLibraryItem';

@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 
 import { IParticipantLibraryItem, IParticipantLibraryItemDetails } from './participantLibraryItem';
 import { IParticipantLibraryItemType } from './participantLibraryItemType';
-import { ConfigService } from '../shared/utils/config.service';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class ParticipantLibraryService {

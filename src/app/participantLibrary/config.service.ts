@@ -13,7 +13,7 @@ export class ConfigService {
         return this._apiUri;
     }
 
-    getApiHost() {
+    getBaseUrl() {
         return this._apiUri.replace('api/', '');
     }
 }

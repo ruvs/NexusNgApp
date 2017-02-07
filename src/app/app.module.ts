@@ -25,10 +25,12 @@ import { MobileHideDirective } from './shared/directives/mobile-hide.directive';
 
 /* Feature Modules */
 import { SharedModule } from './shared/shared.module';
-import { ConfigService } from './shared/utils/config.service';
 import { ItemsService } from './shared/utils/items.service';
 import { MappingService } from './shared/utils/mapping.service';
 import { NotificationService } from './shared/utils/notification.service';
+import { ChannelService, SignalrWindow } from "./shared/utils/channel.service";
+//import { ConfigService } from './shared/utils/config.service';
+
 
 /* My Modules */
 import { HomeComponent } from './home/home.component';
@@ -62,15 +64,14 @@ import { ParticipantLibraryModule } from './participantLibrary/participantLibrar
         HighlightDirective,
         MobileHideDirective,
         HomeComponent,
-        //SlimLoadingBarComponent
     ],
     providers: [
         AppConstants,
-        ConfigService,
         ItemsService,
         MappingService,
         NotificationService,
-        //MyErrorHandler,
+        ChannelService,
+                //MyErrorHandler,
         //[{ provide: ErrorHandler, useClass: MyErrorHandler }],
     ],
     bootstrap: [AppComponent]
