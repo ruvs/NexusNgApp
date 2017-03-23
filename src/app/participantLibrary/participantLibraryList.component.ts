@@ -14,6 +14,8 @@ import { IParticipantLibraryItem, IParticipantLibraryItemDetails } from './parti
 import { IParticipantLibraryItemType } from './participantLibraryItemType';
 import { ParticipantLibraryService } from './participantLibrary.service';
 
+import { ChannelService, ChannelEvent } from '../shared/utils/channel.service';
+
 @Component({
     selector: 'participantLibraryList',
     templateUrl: '../participantLibrary/participantLibraryList.component.html',
@@ -57,19 +59,42 @@ export class ParticipantLibraryListComponent implements OnInit {
     //public totalItems: number = 0;
     //public currentPage: number = 1;
 
+    private channel = "ParticipantLibrary";
+
     constructor(
         private _participantLibraryService: ParticipantLibraryService,
         private itemsService: ItemsService,
         private notificationService: NotificationService,
         private configService: ConfigService,
         private mappingService: MappingService,
-        private loadingBarService: SlimLoadingBarService
+        private loadingBarService: SlimLoadingBarService,
+        private channelService: ChannelService
     ) {
     }
 
     ngOnInit(): void {
         this.loadParticipantLibraryItemTypes();
         this.editingParticipantLibraryItem = this.newPliInstance();
+
+        this.setupSignalrReceiveEvents();
+    }
+
+    setupSignalrReceiveEvents() {
+        // Get an observable for events emitted on this channel
+        this.channelService.sub(this.channel).subscribe(
+            (ev: ChannelEvent) => {
+                switch (ev.Name) {
+                    case "ParticipantLibraryItemUpdated": { this.processParticipantLibraryItemUpdated(ev); }
+                }
+            },
+            (error: any) => {
+                console.warn("Attempt to join channel failed!", error);
+            }
+        )
+    }
+
+    processParticipantLibraryItemUpdated(ev: ChannelEvent) {
+        console.log(ev.Name + " " + ev.Data.Name);
     }
 
     newPliInstance(): IParticipantLibraryItem {
@@ -111,7 +136,7 @@ export class ParticipantLibraryListComponent implements OnInit {
             });
     }
 
-    updateParticipantLibraryItem(pliToAdd: IParticipantLibraryItem)
+    updateParticipantLibraryItem()
     {
         //(editForm: NgForm) {
         //this.mappingService.mapParticipantLibraryItemDetailsToParticipantLibraryItem(this.editingParticipantLibraryItem);

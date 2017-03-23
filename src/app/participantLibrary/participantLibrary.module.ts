@@ -65,6 +65,7 @@ import { ParticipantLibraryService } from './participantLibrary.service';
         MappingService,
         NotificationService,
         ParticipantLibraryService,
+        ChannelService,
             { provide: SignalrWindow, useValue: window },
             { provide: 'channel.config', useClass: ParticipantLibraryChannelConfig }
     ]

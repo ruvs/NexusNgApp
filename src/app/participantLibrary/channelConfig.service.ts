@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ChannelConfig } from '../shared/utils/channel.service';
 import { ConfigService } from './config.service';
+import { AppConstants } from '../shared/appConstants';
 
 @Injectable()
 export class ParticipantLibraryChannelConfig implements ChannelConfig {
@@ -9,10 +10,12 @@ export class ParticipantLibraryChannelConfig implements ChannelConfig {
     hubName: string;
     channel: string;
 
-    constructor(private _configService: ConfigService)
+    constructor(private _configService: ConfigService,
+        private _appConstants: AppConstants)
     {
-        this.url = _configService.getBaseUrl() + "api/participantLibrary/signalr/hubs";
-        this.hubName = "ParticipantLibraryBroadcaster";
+        this.url = _appConstants.getSignalrUri();
+        this.hubName = _appConstants.getSignalrHubName();
+        this.channel = "ParticipantLibrary";
     }
 }
 

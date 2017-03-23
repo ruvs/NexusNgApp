@@ -119,8 +119,6 @@ export class ChannelService {
         });
 
         this.hubProxy.on("onEvent", (channel: string, ev: ChannelEvent) => {
-            //console.log(`onEvent - ${channel} channel`, ev);
-
             // This method acts like a broker for incoming messages. We 
             //  check the internal array of subjects to see if one exists
             //  for the channel this came in on, and then emit the event
@@ -166,7 +164,6 @@ export class ChannelService {
     /* Get an observable that will contain the data associated with a specific 
      * channel */
     sub(channel: string): Observable<ChannelEvent> {
-
         // Try to find an observable that we already created for the requested 
         //  channel
         let channelSub = this.subjects.find((x: ChannelSubject) => {
@@ -201,6 +198,7 @@ export class ChannelService {
                     console.log(`Successfully subscribed to ${channel} channel`);
                 })
                 .fail((error: any) => {
+                    console.log("Error invoking Subscribe on " + channel + "(" + error + ")");
                     channelSub.subject.error(error);
                 });
         },
