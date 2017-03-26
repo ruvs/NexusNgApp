@@ -83,9 +83,7 @@ export class ParticipantLibraryListComponent implements OnInit {
         // Get an observable for events emitted on this channel
         this.channelService.sub(this.channel).subscribe(
             (ev: ChannelEvent) => {
-                switch (ev.Name) {
-                    case "ParticipantLibraryItemUpdated": { this.processParticipantLibraryItemUpdated(ev); }
-                }
+                this.processSignalrEvent(ev);
             },
             (error: any) => {
                 console.warn("Attempt to join channel failed!", error);
@@ -93,8 +91,19 @@ export class ParticipantLibraryListComponent implements OnInit {
         )
     }
 
-    processParticipantLibraryItemUpdated(ev: ChannelEvent) {
-        console.log(ev.Name + " " + ev.Data.Name);
+    processSignalrEvent(ev: ChannelEvent) {
+        switch (ev.Name) {
+            case "ParticipantLibraryItemUpdated":
+                {
+                    this.notificationService.printInfoMessage(`Item '${ev.Data.DisplayName}' (${ev.Data.Name}) has been updated`);
+                    break;
+                }
+            case "ParticipantLibraryItemCreated":
+                {
+                    this.notificationService.printInfoMessage(`Item '${ev.Data.DisplayName}' (${ev.Data.Name}) has been created`);
+                    break;
+                }
+        }
     }
 
     newPliInstance(): IParticipantLibraryItem {

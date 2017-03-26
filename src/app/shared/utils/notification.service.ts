@@ -28,10 +28,15 @@ export class NotificationService {
         this._notifier.success(message);
     }
 
-    /*
-    Prints an error message using the alertify.js lib
-    */
     printErrorMessage(message: string) {
         this._notifier.error(message);
+    }
+
+    printInfoMessage(message: string) {
+        this._notifier.info(message);
+    }
+
+    printWarningMessage(message: string) {
+        this._notifier.warn(message);
     }
 }

@@ -620,6 +620,8 @@
 			prompt  : function (message, fn, placeholder, cssClass) { _alertify.dialog(message, "prompt", fn, placeholder, cssClass); return this; },
 			success : function (message, wait) { _alertify.log(message, "success", wait); return this; },
 			error   : function (message, wait) { _alertify.log(message, "error", wait); return this; },
+			info    : function (message, wait) { _alertify.log(message, "info", wait); return this; },
+			warn    : function (message, wait) { _alertify.log(message, "warn", wait); return this; },
 			set     : function (args) { _alertify.set(args); },
 			labels  : _alertify.labels,
 			debug   : _alertify.handleErrors

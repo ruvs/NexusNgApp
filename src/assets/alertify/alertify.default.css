@@ -79,3 +79,11 @@
 		background: #5CB811;
 		background: rgba(92,184,17,.9);
 	}
+	.alertify-log-info {
+		background: #2B72D5;
+		background: rgba(43, 114, 213,.9);
+	}
+	.alertify-log-warn {
+		background: #DF9000;
+		background: rgba(223,144,0, 0.90);
+	}
